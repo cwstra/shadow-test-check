@@ -6,7 +6,11 @@
  [[org.clojure/test.check "1.1.0"]]
 
  :builds
- {:example
+ {:script-example
   {:target :node-script
-   :main example.main/main
-   :output-to "output/example.js"}}}
+   :main script-example.main/main
+   :output-to "output/script-example.js"}
+  :repl-example
+  {:target :node-script
+   :main repl-example.main/main
+   :output-to "output/repl-example.js"}}}

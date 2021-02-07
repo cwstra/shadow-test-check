@@ -1,1 +1,4 @@
 .shadow-cljs
+node_modules
+output
+package-lock.json

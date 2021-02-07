@@ -1,3 +1,3 @@
-(ns example.main)
+(ns repl-example.main)
 
 (defn ^:export main [])

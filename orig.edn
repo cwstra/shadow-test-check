@@ -1,0 +1,40 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src/dev"
+  "src/main"
+  "src/test"]
+
+ :dependencies
+ [[cider/cider-nrepl "0.22.4"]
+  [sqlingvo "0.9.35"]
+  [org.clojure/test.check "1.1.0"]
+  [reagent "1.0.0"]]
+
+ :nrepl
+ {:port 3333}
+
+ :dev-http
+ {8080 "public"}
+
+ :builds
+ {:shared
+  {:target  :node-library
+   :entries [ptu-gen.shared.compress
+             ptu-gen.shared.macros]}
+  :spec
+  {:target  :node-library
+   :entries [ptu-gen.spec.main]}
+  :generate-db
+  {:target     :node-script
+   :main       ptu-gen.generate-db.main/main
+   :output-to  "node_scripts/generate-db.js"
+   :depends-on #{:spec}}
+  :parser
+  {:target     :node-script
+   :main       ptu-gen.parse-sql-dump.main/main
+   :output-to  "node_scripts/parse-sql-dump.js"
+   :depends-on #{:spec :general}}
+  :frontend
+  {:target     :browser
+   :modules    {:main {:init-fn ptu-gen.frontend.app/main}}
+   :depends-on #{:spec}}}}

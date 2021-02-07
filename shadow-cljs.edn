@@ -1,0 +1,12 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src"]
+
+ :dependencies
+ [[org.clojure/test.check "1.1.0"]]
+
+ :builds
+ {:example
+  {:target :node-script
+   :main example.main/main
+   :output-to "output/example.js"}}}
